@@ -26,7 +26,7 @@ class BookList{
       } else if (this.nextBook === 0){
             this.nextBook = book;
       };
-      console.log(`++ Book ${book.Title} added.`);
+      console.log(`++ Book added: ${book.Title}.`);
       this.sayReading();
    }
 
@@ -58,6 +58,49 @@ class BookList{
          }
          this.sayReading();
       };
+   }
+
+   listBooks(sortBy) {
+      let arr1 = Array.from(this.books);
+         switch (sortBy) {
+         case "A":
+            sortBy="Author:"
+            arr1.sort(function (a,b) {
+               let ret = (a.Author.toUpperCase() < b.Author.toUpperCase()) ? -1 : 0;
+               return (a.Author.toUpperCase() > b.Author.toUpperCase()) ? 1 : ret;
+            });
+            break;
+         case "G":
+            sortBy="Genre:"
+            arr1.sort(function (a,b) {
+               let ret = (a.Genre.toUpperCase() < b.Genre.toUpperCase()) ? -1 : 0;
+               return (a.Genre.toUpperCase() > b.Genre.toUpperCase()) ? 1 : ret;
+            });
+            break;
+         case "D":
+            sortBy="Date Read:"
+            arr1.sort(function (a,b) {
+               let ret = (a.ReadDate < b.ReadDate) ? -1 : 0;
+               return (a.ReadDate > b.ReadDate) ? 1 : ret;
+            });
+            break;
+         case "R":
+            sortBy="Read:"
+            arr1.sort(function (a,b) {
+               let ret = (a.Read < b.Read) ? -1 : 0;
+               return (a.Read > b.Read) ? 1 : ret;
+            });
+            break;
+         default:
+            sortBy="Title:"
+            arr1.sort(function (a,b) {
+               let ret = (a.Title.toUpperCase() < b.Title.toUpperCase()) ? -1 : 0;
+               return (a.Title.toUpperCase() > b.Title.toUpperCase()) ? 1 : ret;
+            });
+            break
+         }
+      console.table(`Sorted by: ${sortBy}`);
+      console.table(arr1);
    }
 
    sayReading() {
@@ -104,18 +147,18 @@ class BookList{
 console.clear();
 const myBookList = new BookList();
 myBookList.readLater();
-myBookList.add(new Book("A","A-genre","A-author"));
+myBookList.add(new Book("Where the Deer and the Antelope Play","Hardcover","Nick Offerman"));
 myBookList.readLater();
 myBookList.finishCurrentBook();
-myBookList.add(new Book("B","B-genre","B-author"));
-myBookList.add(new Book("C","C-genre","C-author"));
+myBookList.add(new Book("Komi Can’t Communicate","Paperback","Tomohito Oda"));
+myBookList.add(new Book("Stop Overthinking","Paperback","Nick Trenton"));
 myBookList.finishCurrentBook();
-myBookList.add(new Book("D","D-genre","D-author"));
+myBookList.add(new Book("The Pout-Pout Fish","Board book","Deborah Diesen"));
 myBookList.readLater();
 myBookList.readLater();
-myBookList.add(new Book("E","E-genre","E-author"));
+myBookList.add(new Book("The Modern Herbal Dispensatory","Paperback","Easley & Horne"));
 myBookList.readLater();
-myBookList.add(new Book("F","F-genre","F-author"));
+myBookList.add(new Book("Bushcraft 101","Paperback","Dave Canterbury"));
 // myBookList.finishCurrentBook();
 // myBookList.finishCurrentBook();
 myBookList.finishCurrentBook();
@@ -123,9 +166,15 @@ myBookList.readLater();
 myBookList.sayReading();
 myBookList.finishCurrentBook();
 myBookList.readLater();
-myBookList.add(new Book("G","G-genre","G-author"));
+myBookList.add(new Book("The Book with No Pictures","Hardcover","B. J. Novak"));
 myBookList.finishCurrentBook();
 myBookList.readLater();
+myBookList.finishCurrentBook();
 
 console.log();
-console.log(myBookList);
+myBookList.listBooks("A");
+myBookList.listBooks("G");
+myBookList.listBooks("R");
+myBookList.listBooks("T");
+myBookList.sayReading();
+console.log();
