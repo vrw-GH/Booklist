@@ -64,42 +64,42 @@ class BookList{
       let arr1 = Array.from(this.books);
          switch (sortBy) {
          case "A":
-            sortBy="Author:"
+            sortBy="Author"
             arr1.sort(function (a,b) {
                let ret = (a.Author.toUpperCase() < b.Author.toUpperCase()) ? -1 : 0;
                return (a.Author.toUpperCase() > b.Author.toUpperCase()) ? 1 : ret;
             });
             break;
          case "G":
-            sortBy="Genre:"
+            sortBy="Genre"
             arr1.sort(function (a,b) {
                let ret = (a.Genre.toUpperCase() < b.Genre.toUpperCase()) ? -1 : 0;
                return (a.Genre.toUpperCase() > b.Genre.toUpperCase()) ? 1 : ret;
             });
             break;
          case "D":
-            sortBy="Date Read:"
+            sortBy="DateRead"
             arr1.sort(function (a,b) {
                let ret = (a.ReadDate < b.ReadDate) ? -1 : 0;
                return (a.ReadDate > b.ReadDate) ? 1 : ret;
             });
             break;
          case "R":
-            sortBy="Read:"
+            sortBy="Read"
             arr1.sort(function (a,b) {
                let ret = (a.Read < b.Read) ? -1 : 0;
                return (a.Read > b.Read) ? 1 : ret;
             });
             break;
          default:
-            sortBy="Title:"
+            sortBy="Title"
             arr1.sort(function (a,b) {
                let ret = (a.Title.toUpperCase() < b.Title.toUpperCase()) ? -1 : 0;
                return (a.Title.toUpperCase() > b.Title.toUpperCase()) ? 1 : ret;
             });
             break
          }
-      console.table(`Sorted by: ${sortBy}`);
+      console.table(`Sorted by: ${sortBy} -`);
       console.table(arr1);
    }
 
